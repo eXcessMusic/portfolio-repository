@@ -5,12 +5,12 @@
     <title>Document</title>
 </head>
 <body>
-<div class="title">Case Converter</div>
-<textarea id="input"></textarea><br>
+<div class="title" style="font-family: 'Avenir Next',sans-serif"><b>Case Converter</b></div><br>
+<textarea id="input" rows="10" cols="70"></textarea><br><br>
 <button id="upper-case">Upper Case</button>
 <button id="lower-case">Lower Case</button>
 <button id="proper-case">Proper Case</button>
-<button id="sentence-case">Sentence Case</button>
+<button id="sentence-case">Sentence Case</button><br><br>
 <button id="save-text-file">Save Text File</button>
 <script>
     document.getElementById("upper-case").addEventListener("click", function () {
@@ -62,7 +62,7 @@
     }, false);
 
     // Start file download.
-    download("hello.txt","This is the content of my file :)");
+    <!-- download("hello.txt","This is the content of my file :)");-->
 </script>
 </body>
 </html>
