@@ -31,14 +31,17 @@
                 </li>
                 -->
             </ul>
-            <button id="reset-button">RESET TASKS</button>
+            <div class="save-reset-buttons">
+                <button id="save-tasks-button">SAVE TASKS</button>
+                <button id="reset-button">RESET TASKS</button>
+            </div>
         </div>
     </main>
     <script>
         // Get necessary elements from the DOM
         const inputTask = document.getElementById('input-task');
         const addTaskButton = document.getElementById('add-task-button');
-        const taskList = document.getElementById('task-list');
+        let taskList = document.getElementById('task-list');
 
         // Function to delete a task
         function deleteTask(event) {
@@ -144,7 +147,7 @@
                 const taskList = getTaskListFromLocalStorage();
                 const newTask = { name: taskName, completed: false };
                 taskList.push(newTask);
-                saveTaskListToLocalStorage(taskList);
+                saveTasks(); // Replace saveTaskListToLocalStorage(taskList) with saveTasks()
                 renderTaskList(taskList);
                 inputTask.value = '';
             }
@@ -154,9 +157,10 @@
         function deleteTask(index) {
             const taskList = getTaskListFromLocalStorage();
             taskList.splice(index, 1);
-            saveTaskListToLocalStorage(taskList);
+            saveTasks(); // Replace saveTaskListToLocalStorage(taskList) with saveTasks()
             renderTaskList(taskList);
         }
+
 
         // Function to handle task completion
         function toggleTaskCompletion(index) {
@@ -186,12 +190,12 @@
         });
 
         // Initial task list
-        const initialTaskList = [
+        const initialTaskList = [/*
             { name: 'Task 1', completed: false },
             { name: 'Task 2', completed: true },
             { name: 'Task 3', completed: false },
             { name: 'Task 4', completed: true },
-            { name: 'Task 5', completed: false }
+            { name: 'Task 5', completed: false }*/
         ];
 
         // Save the initial task list to local storage
@@ -206,17 +210,37 @@
         // Add event listener for the click event
         resetButton.addEventListener('click', resetTasks);
 
+        const taskInput = document.getElementById('input-task');
+
+        // Function to handle saving tasks to local storage
+        function saveTasks() {
+            const taskList = Array.from(document.querySelectorAll('#task-list li'));
+            const savedTasks = taskList.map((task) => {
+                const checkbox = task.querySelector('input[type="checkbox"]');
+                const label = task.querySelector('.task');
+                return {
+                    name: label.textContent,
+                    completed: checkbox.checked
+                };
+            });
+            saveTaskListToLocalStorage(savedTasks);
+        }
+
         // Reset tasks function
         function resetTasks() {
+            // Clear the local storage
+            localStorage.clear();
+
+            // Get the task list element
+            taskList = document.getElementById('task-list');
+
             // Set an empty array as the new task list
-            const newTaskList = [];
+            taskList.innerHTML = '';
 
-            // Save the new task list to local storage
-            localStorage.setItem('taskList', JSON.stringify(newTaskList));
-
-            // Render the task list (empty in this case)
-            renderTaskList(newTaskList);
+            // Clear the input field
+            taskInput.value = '';
         }
+
     </script>
 </body>
 </html>
