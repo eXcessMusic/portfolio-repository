@@ -1,3 +1,7 @@
+body {
+    background-color: #d4d4e9;
+}
+
 h1,
 li {
     font-family: Avenir, sans-serif;
@@ -6,6 +10,9 @@ li {
 
 h1 {
     padding: 10px;
+    margin-top: -42px;
+    color: lavender;
+    text-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);;;
 }
 
 .todo {
@@ -14,7 +21,9 @@ h1 {
     display: flex;
     flex-direction: column;
     margin: auto;
+    margin-top: 300px;
     padding-bottom: 40px;
+    box-shadow: 0 4px 50px rgba(0, 0, 0, 0.1);;
 }
 
 #task-list {
@@ -24,6 +33,7 @@ h1 {
 .input-block {
     display: flex;
     align-items: center;
+    margin-top: 10px;
 }
 
 #input-task {
@@ -39,7 +49,7 @@ h1 {
 
 #add-task-button {
     margin-right: 40px;
-    border-radius: 0 20% 20% 0;
+    /*border-radius: 0 20% 20% 0;*/
 }
 
 button {
@@ -47,7 +57,7 @@ button {
     background-color: #26fbaa;
     font-family: Avenir, sans serif;
     font-weight: bold;
-    box-shadow: 0 4px 4px slategrey;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);;
     padding: 5px;
 }
 
