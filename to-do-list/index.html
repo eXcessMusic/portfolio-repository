@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do List</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <main>
+        <div class="todo">
+            <h1>To-Do List</h1>
+            <div class="input-block">
+                <input id="input-task" placeholder="Enter task here">
+                <button id="add-task-button">ADD TASK</button>
+            </div>
+            <ul id="task-list">
+                <!--<li>
+                    <input type="checkbox">
+                    <span class="task">Email David</span>
+                    <button class="delete-btn">x</button>
+                </li>
+                <li>
+                    <input type="checkbox">
+                    <span class="task">Create ideal user persona guide</span>
+                    <button class="delete-btn">x</button>
+                </li>
+                <li>
+                    <input type="checkbox">
+                    <span class="task">Set up A/B test</span>
+                    <button class="delete-btn">x</button>
+                </li>
+                -->
+            </ul>
+            <button id="reset-button">RESET TASKS</button>
+        </div>
+    </main>
+    <script>
+        // Get necessary elements from the DOM
+        const inputTask = document.getElementById('input-task');
+        const addTaskButton = document.getElementById('add-task-button');
+        const taskList = document.getElementById('task-list');
+
+        // Function to delete a task
+        function deleteTask(event) {
+            const taskItem = event.target.closest('li');
+            taskList.removeChild(taskItem);
+        }
+
+        // Function to mark a task as complete
+        function markTaskComplete(event) {
+            const checkbox = event.target;
+            const taskSpan = checkbox.nextElementSibling;
+
+            if (checkbox.checked) {
+                taskSpan.style.textDecoration = 'line-through';
+            } else {
+                taskSpan.style.textDecoration = 'none';
+            }
+        }
+
+        // Add event listener to the "ADD TASK" button
+        addTaskButton.addEventListener('click', function() {
+            const taskText = inputTask.value;
+
+            if (taskText !== '') {
+                const newTask = document.createElement('li');
+                newTask.innerHTML = `
+                <input type="checkbox">
+                <span class="task">${taskText}</span>
+                <button class="delete-btn">x</button>
+            `;
+
+                const checkbox = newTask.querySelector('input[type="checkbox"]');
+                checkbox.addEventListener('change', markTaskComplete);
+
+                const deleteButton = newTask.querySelector('.delete-btn');
+                deleteButton.addEventListener('click', deleteTask);
+
+                taskList.appendChild(newTask);
+                inputTask.value = '';
+            }
+        });
+
+        // Check initial checkbox states and apply styles
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(function(checkbox) {
+            checkbox.addEventListener('change', markTaskComplete);
+            markTaskComplete({ target: checkbox });
+        });
+
+        // Function to retrieve the task list from local storage
+        function getTaskListFromLocalStorage() {
+            const taskListString = localStorage.getItem('taskList');
+            if (taskListString) {
+                return JSON.parse(taskListString);
+            } else {
+                return [];
+            }
+        }
+
+        // Function to save the task list to local storage
+        function saveTaskListToLocalStorage(taskList) {
+            localStorage.setItem('taskList', JSON.stringify(taskList));
+        }
+
+        // Function to render the task list on the page
+        function renderTaskList(taskList) {
+            const taskListElement = document.getElementById('task-list');
+            taskListElement.innerHTML = '';
+
+            taskList.forEach((task, index) => {
+                const listItem = document.createElement('li');
+                const taskContainer = document.createElement('div');
+                taskContainer.classList.add('task');
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.id = `checkbox-${index}`;
+                checkbox.checked = task.completed;
+                const label = document.createElement('label');
+                label.htmlFor = `checkbox-${index}`;
+                label.textContent = task.name;
+                const deleteButton = document.createElement('button');
+                deleteButton.classList.add('delete-btn');
+                deleteButton.dataset.index = index;
+                deleteButton.textContent = 'Delete';
+
+                const taskElement = document.createElement('span');
+                taskElement.classList.add('task');
+                taskElement.appendChild(checkbox);
+                taskElement.appendChild(label);
+
+                listItem.appendChild(taskElement);
+                listItem.appendChild(deleteButton);
+                taskListElement.appendChild(listItem);
+            });
+        }
+
+        // Function to handle task creation
+        function createTask() {
+            const inputTask = document.getElementById('input-task');
+            const taskName = inputTask.value.trim();
+
+            if (taskName !== '') {
+                const taskList = getTaskListFromLocalStorage();
+                const newTask = { name: taskName, completed: false };
+                taskList.push(newTask);
+                saveTaskListToLocalStorage(taskList);
+                renderTaskList(taskList);
+                inputTask.value = '';
+            }
+        }
+
+        // Function to handle task deletion
+        function deleteTask(index) {
+            const taskList = getTaskListFromLocalStorage();
+            taskList.splice(index, 1);
+            saveTaskListToLocalStorage(taskList);
+            renderTaskList(taskList);
+        }
+
+        // Function to handle task completion
+        function toggleTaskCompletion(index) {
+            const taskList = getTaskListFromLocalStorage();
+            taskList[index].completed = !taskList[index].completed;
+            saveTaskListToLocalStorage(taskList);
+            renderTaskList(taskList);
+        }
+
+        // Event listener for the "Add task" button
+        document.getElementById('add-task-button').addEventListener('click', createTask);
+
+        // Event listener for task deletion (event delegation)
+        document.getElementById('task-list').addEventListener('click', function (event) {
+            if (event.target.matches('.delete-btn')) {
+                const index = parseInt(event.target.dataset.index);
+                deleteTask(index);
+            }
+        });
+
+        // Event listener for task completion (event delegation)
+        document.getElementById('task-list').addEventListener('change', function (event) {
+            if (event.target.matches('input[type="checkbox"]')) {
+                const index = parseInt(event.target.id.split('-')[1]);
+                toggleTaskCompletion(index);
+            }
+        });
+
+        // Initial task list
+        const initialTaskList = [
+            { name: 'Task 1', completed: false },
+            { name: 'Task 2', completed: true },
+            { name: 'Task 3', completed: false },
+            { name: 'Task 4', completed: true },
+            { name: 'Task 5', completed: false }
+        ];
+
+        // Save the initial task list to local storage
+        saveTaskListToLocalStorage(initialTaskList);
+
+        // Initial rendering of the task list
+        renderTaskList(initialTaskList);
+
+        // Get the "reset" button element
+        const resetButton = document.getElementById('reset-button');
+
+        // Add event listener for the click event
+        resetButton.addEventListener('click', resetTasks);
+
+        // Reset tasks function
+        function resetTasks() {
+            // Set an empty array as the new task list
+            const newTaskList = [];
+
+            // Save the new task list to local storage
+            localStorage.setItem('taskList', JSON.stringify(newTaskList));
+
+            // Render the task list (empty in this case)
+            renderTaskList(newTaskList);
+        }
+    </script>
+</body>
+</html>

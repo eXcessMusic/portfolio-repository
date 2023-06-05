@@ -1,0 +1,109 @@
+h1,
+li {
+    font-family: Avenir, sans-serif;
+    margin: auto;
+}
+
+h1 {
+    padding: 10px;
+}
+
+.todo {
+    background-color: lavender;
+    width: 700px;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    padding-bottom: 40px;
+}
+
+#task-list {
+    list-style-type: none;
+}
+
+.input-block {
+    display: flex;
+    align-items: center;
+}
+
+#input-task {
+    background-color: lavender;
+    border: none;
+    border-bottom: solid 4px #26fbaa;
+    flex: 1;
+    margin-left: 40px;
+    margin-right: 5px;
+}
+
+#add-task-button {
+    margin-right: 40px;
+    border-radius: 0 20% 20% 0;
+}
+
+button {
+    border: none;
+    background-color: #26fbaa;
+    font-family: Avenir, sans serif;
+    font-weight: bold;
+    box-shadow: 0px 4px 4px slategrey;
+    padding: 5px;
+}
+
+li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.task {
+    margin-left: 10px;
+}
+
+.delete-btn {
+    margin: 2px 40px 0 0;
+    border-radius: 0 0 15% 0;
+}
+
+/* Hide the default checkbox */
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+/* Style the custom checkbox */
+input[type="checkbox"]::before {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #26fbaa;
+    background-color: #fff;
+    border-radius: 3px;
+    margin-right: 5px;
+}
+
+/* Style the checked state of the custom checkbox */
+input[type="checkbox"]:checked::before {
+    background-color: #26fbaa;
+    position: relative;
+}
+
+/* Style the custom checkbox when it is checked */
+input[type="checkbox"]:checked::after {
+    content: '\2713'; /* Unicode checkmark character */
+    display: inline-block;
+    position: relative;
+    top: -2px;
+    left: -24px;
+    color: black;
+    font-size: 15px;
+    line-height: 16px;
+    width: 16px;
+    height: 16px;
+    text-align: center;
+    background-color: #26fbaa;
+    border-radius: 3px;
+}
+
+
