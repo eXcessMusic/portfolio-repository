@@ -1,0 +1,109 @@
+body {
+    position: relative;
+    font-family: "Avenir Next", sans-serif;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(230,230,250,0.5); /* Adjust the color and opacity as per your preference */
+    z-index: -1;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("images/world.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: repeat-x;
+    z-index: -2;
+}
+
+/*.quiz-area {
+    display: flex;
+    flex-direction: column;
+}*/
+
+.questions-panel {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Create three columns of equal width */
+    grid-gap: 10px; /* Add some gap between the questions */
+    max-width: 600px; /* Adjust the max-width as per your preference */
+    margin: 0 auto; /* Center the grid horizontally */
+}
+
+.question {
+    width: 150px;
+    height: 200px;
+    position: relative; /* Add relative positioning to create a new positioning context for front and back */
+    perspective: 1000px; /* Add perspective for the 3D effect */
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 10px );
+    -webkit-backdrop-filter: blur( 10px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    padding: 10px;
+    border-radius: 10px;
+    /*overflow: hidden; /* Add overflow hidden to prevent content from overflowing when flipped */
+    transform-style: preserve-3d; /* Preserve 3D space for the 3D effect */
+}
+
+.question p {
+    text-shadow: rgba( 31, 38, 135, 0.37 ) 0 3px 10px;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(150,123,182);
+    text-shadow: rgba( 31, 38, 135, 0.2) 0 5px 10px;
+}
+
+.front,
+.back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    backface-visibility: hidden; /* Hide the backface of the elements */
+    transition: transform 0.5s ease-in-out; /* Add a transition for smooth flipping */
+    transition-delay: 0.1s;
+}
+
+.front {
+    background: linear-gradient(#08aeea, #26fbaa);
+    transform: rotateY(0deg);
+    z-index: 2;
+}
+
+.back {
+    background: linear-gradient(#fad861, blueviolet);
+    transform: rotateY(180deg);
+    z-index: 1;
+}
+
+.question:hover .front {
+    transform: rotateY(180deg);
+}
+
+.question:hover .back {
+    transform: rotateY(0deg);
+}

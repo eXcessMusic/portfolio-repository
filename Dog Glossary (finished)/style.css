@@ -1,0 +1,54 @@
+body {
+    background-color: #d4d4e9;
+}
+
+h1,
+input,
+button {
+    font-family: "Avenir Next", sans-serif;
+}
+
+h1 {
+    color: lavender;
+    text-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-top: -51px;
+}
+
+.highlight {
+    color: blueviolet;
+    text-shadow: none;
+}
+
+button {
+    background-color: lavender;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition-duration: 0.2s;
+}
+
+input {
+    background-color: lavender;
+    border: none;
+    padding-bottom: 4px;
+    border-bottom: solid 4px #26fbaa;
+    margin: 0 10px 0 10px;
+}
+
+.glossary {
+    background-color: lavender;
+    padding: 20px;
+    min-height: auto;
+    border-radius: 10px;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
