@@ -19,6 +19,7 @@ textarea {
     padding: 10px;
     border-radius: 5px;
     border-color: rgba(137, 125, 125, 0.60);
+    font-family: 'Avenir Next',sans-serif;
 }
 
 .app-box {
