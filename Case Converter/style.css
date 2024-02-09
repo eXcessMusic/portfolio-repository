@@ -1,0 +1,69 @@
+body {
+    font-family: 'Avenir Next',sans-serif;
+    margin-top: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: gainsboro;
+}
+
+h1 {
+    color: gainsboro;
+    text-shadow: 0 2px 5px rgba(137, 125, 125, 0.60), 0 -1px 0 white;
+    font-size: 50px;
+}
+
+textarea {
+    width: 700px;
+    padding: 10px;
+    border-radius: 5px;
+    border-color: rgba(137, 125, 125, 0.60);
+}
+
+.app-box {
+    width: 900px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 15px 20px rgba(137, 125, 125, 0.40), 0 -1px 0 white;
+    padding: 50px;
+    border-radius: 10px;
+}
+
+.buttons {
+    flex-direction: row;
+    padding: 5px;
+}
+
+/* Button Style */
+button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: rgb(137, 125, 125);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+/* Hover effect */
+button:hover {
+    background-color: #ED9C9C; /* Darker red */
+}
+
+/* Disabled state */
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+#save-text-file {
+    width: 560px;
+}
