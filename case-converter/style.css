@@ -57,6 +57,7 @@ button {
 /* Hover effect */
 button:hover {
     background-color: #ED9C9C; /* Darker red */
+    box-shadow: 0 15px 20px rgba(137, 125, 125, 0.40), 0 -1px 0 white
 }
 
 /* Disabled state */
@@ -66,5 +67,5 @@ button:disabled {
 }
 
 #save-text-file {
-    width: 560px;
+    width: 565px;
 }
