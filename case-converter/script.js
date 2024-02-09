@@ -45,3 +45,17 @@ document.getElementById("save-text-file").addEventListener("click", function() {
     let filename = "text.txt"
     download(filename ,document.querySelector("textarea").value);
 }, false);
+
+// Get references to the textarea and button
+const textArea = document.getElementById('input'); // Change 'textArea' to 'input'
+const saveButton = document.getElementById('save-text-file'); // Change 'saveButton' to 'save-text-file'
+
+// Function to check the textarea content and enable/disable the button accordingly
+function checkTextArea() {
+    if (textArea.value.trim() !== '') {
+        saveButton.disabled = false;
+    } else {
+        saveButton.disabled = true;
+    }
+}
+

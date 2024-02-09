@@ -8,13 +8,13 @@
 <body>
     <div class="app-box">
         <h1>Case Converter</h1><br>
-        <textarea id="input" rows="10" cols="70"></textarea><br><br>
+        <textarea id="input" rows="10" cols="70" oninput="checkTextArea()"></textarea><br><br>
         <div class="buttons">
             <button id="upper-case">UPPER CASE</button>
             <button id="lower-case">lower Case</button>
             <button id="proper-case">Proper Case</button>
             <button id="sentence-case">Sentence case</button><br><br>
-            <button id="save-text-file">Save Text File</button>
+            <button id="save-text-file" disabled>Save Text File</button>
         </div>
     </div>
     <script src="script.js"></script>
