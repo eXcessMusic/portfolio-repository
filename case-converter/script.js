@@ -1,13 +1,16 @@
+// Upper Case Function
 document.getElementById("upper-case").addEventListener("click", function () {
     let words = document.getElementById("input").value.toUpperCase();
     document.getElementById("input").value = words;
 });
 
+// Lower Case Function
 document.getElementById("lower-case").addEventListener("click", function () {
     let words = document.getElementById("input").value.toLowerCase();
     document.getElementById("input").value = words;
 });
 
+// Proper Case Function
 function properCase(element){
     return element.toLowerCase().replace(/^(.)|\s(.)/g,
         function($1) { return $1.toUpperCase(); });
@@ -18,6 +21,7 @@ document.getElementById("proper-case").addEventListener("click", function() {
     element.value = properCase(element.value);
 });
 
+// Sentence Case Function
 function sentenceCase(element){
     return element.toLowerCase().replace(/^(.)|\.(\s)*(.)/g,
         function ($1) {return $1.toUpperCase();});
@@ -28,6 +32,7 @@ document.getElementById("sentence-case").addEventListener("click", function() {
     element.value = sentenceCase(element.value);
 });
 
+// Download Function
 function downloadFile() {
     // Ask the user for the desired file name
     let filename = window.prompt("Please enter the desired file name (without extension):");
